@@ -1,0 +1,11 @@
+
+[1mFrom:[0m /home/ubuntu/environment/tasklist/app/controllers/tasks_controller.rb:57 TasksController#correct_user:
+
+    [1;34m54[0m:     [32mdef[0m [1;34mcorrect_user[0m
+    [1;34m55[0m: binding.pry
+    [1;34m56[0m:         @task = current_user.tasks.find_by([35mid[0m: params[[33m:id[0m])
+ => [1;34m57[0m:     [32munless[0m @task
+    [1;34m58[0m:         redirect_to root_url
+    [1;34m59[0m:     [32mend[0m
+    [1;34m60[0m:     [32mend[0m
+

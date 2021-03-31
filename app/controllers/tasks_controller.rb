@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
     before_action :require_user_logged_in
-    before_action :correct_user, only: [:create, :edit, :show, :update, :destroy]
+    before_action :correct_user, only: [:edit, :show, :update, :destroy]
 
     def index
         @tasks = current_user.tasks.order(id: :desc).all.page(params[:page]).per(10)
@@ -14,6 +14,7 @@ class TasksController < ApplicationController
     end
 
     def create
+        @task = current_user.tasks.build(task_params)
         if @task.save
             flash[:success] = 'タスク が正常に登録されました'
             redirect_to @task
