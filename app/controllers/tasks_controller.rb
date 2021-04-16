@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
     before_action :require_user_logged_in
-    before_action :correct_user, only: [:edit, :show, :update, :destroy]
+    before_action :correct_user, only: [:edit, :show, :update, :destroy, :important]
 
     def index
         @tasks = current_user.tasks.order(id: :desc).all.page(params[:page]).per(10)
@@ -43,11 +43,20 @@ class TasksController < ApplicationController
         redirect_to tasks_url
     end
     
+    def update
+        if @task.update(task_params)
+            flash[:success] = "正常に更新しました"
+            redirect_to @task
+        else
+            flash.now[:danger] = '重要に追加できませんでした'
+            render :edit
+        end
+    end
     
     private
     
     def task_params
-        params.require(:task).permit(:content, :status)
+        params.require(:task).permit(:content, :status, :important)
     end
     
     def correct_user

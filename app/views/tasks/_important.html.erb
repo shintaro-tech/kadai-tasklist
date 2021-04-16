@@ -1,0 +1,5 @@
+<% if @task.important %>
+  <%= link_to '重要から外す', task_path(@task.id, task: {important: false}), method: :put, class: 'btn btn-danger' %>
+<% else %>
+  <%= link_to '重要に追加する', task_path(@task.id, task: {important: true}), method: :put, class: 'btn btn-primary' %>
+<% end %>
